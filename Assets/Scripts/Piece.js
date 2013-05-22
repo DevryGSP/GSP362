@@ -124,9 +124,9 @@ function OnChildTriggerEnter (other : Collider)
 	// snap pice to the grid
 	this.transform.position.x = Mathf.Ceil(this.transform.position.x / 1);
 	this.transform.position.y = Mathf.Ceil(this.transform.position.y / 1);
-            
-   	isSelected = false;
-   	
+	
+	isSelected = false;
+	   	
    	// remove all children from this parent
    	var count:int = this.transform.GetChildCount();
    	for (var i:int = 0; i < count; i++)
@@ -135,5 +135,5 @@ function OnChildTriggerEnter (other : Collider)
    	}
    	
    	// destroy self
-   	Destroy(this.gameObject);
+	Destroy(this.gameObject);
 }
