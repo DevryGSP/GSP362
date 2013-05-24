@@ -16,7 +16,8 @@ function Update()
 	count = blocks.Count;
 	if (blocks.Count == maxBlocks)
 	{
-		ClearBlocks();
+		//ClearBlocks();
+		(this.transform.parent.transform.parent.GetComponent("Gameboard") as Gameboard).onLineFull(this, this.transform.parent.name);
 	}
 }
 
@@ -44,7 +45,7 @@ function OnTriggerExit(other:Collider):void
 	}
 }
 
-function ClearBlocks():void
+public function ClearBlocks():void
 {
 	for(var o:Object in blocks)
 	{

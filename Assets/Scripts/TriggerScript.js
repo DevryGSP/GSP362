@@ -48,29 +48,29 @@ function PickTargetLocation(){
 	targetNumber = 4;
 	}
 	if (targetNumber == 1){
-		this.transform.position.x = 0;
+		this.transform.position.x = 5;
 		this.transform.position.y = 25;
 		velocity = new Vector2(0,-1);
 		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 2){
-		this.transform.position.x = 32;
-		this.transform.position.y = 0;		
+		this.transform.position.x = 25;
+		this.transform.position.y = 5;		
 		velocity = new Vector2(-1,0);
 		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 3){
-		this.transform.position.x = 0;
+		this.transform.position.x = 5;
 		this.transform.position.y =-25;
 		velocity = new Vector2(0,1);
 		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 4){
-		this.transform.position.x = -32;
-		this.transform.position.y = 0;
+		this.transform.position.x = -25;
+		this.transform.position.y = 5;
 		velocity = new Vector2(1,0);
 		CreatePiece();
 		GetRotation();

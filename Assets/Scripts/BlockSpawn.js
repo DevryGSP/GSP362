@@ -13,7 +13,7 @@ var currentPiece:Piece;
 
 function Start ()
 {
-    timer = 0.0;
+    timer = speed;//0.0;
 }
 
 function Update ()
