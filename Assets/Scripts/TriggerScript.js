@@ -12,6 +12,7 @@ var timer : Number;
 
 //@HideInInspector
 var currentPiece:Piece;
+var currentObject:GameObject;
 
 function Start ()
 {
@@ -93,6 +94,8 @@ if (currentPiece)
     	piece.speed = speed;
     	piece.velocity.x = this.velocity.x;  
     	piece.velocity.y = this.velocity.y;
+    	currentPiece = piece;
+    	currentObject = o;
     	
     	
 
@@ -101,23 +104,22 @@ if (currentPiece)
 
 function GetRotation(){
 var getRotation = Random.Range(1,5);
-var target: GameObject;
-target = GameObject.FindWithTag("piece");
+
 
 if ( getRotation == 1){
-//target.transform.localRotation.x = 0;
+currentObject.transform.rotation = Quaternion.Euler(0f,0f,0f);
 }
 
 if ( getRotation == 2){
-//target.transform.localRotation.x = 90;
+currentObject.transform.rotation = Quaternion.Euler(0f,0f,90f);
 }
 
 if ( getRotation == 3){
-//target.transform.localRotation.x = 180;
+currentObject.transform.rotation = Quaternion.Euler(0f,0f,180f);
 }
 
-if ( getRotation == 1){
-//target.transform.localRotation.x = 270;
-}
+if ( getRotation == 4){
+	currentObject.transform.rotation = Quaternion.Euler(0f,0f,270f);
+	}
 
 }
