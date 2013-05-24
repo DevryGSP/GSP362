@@ -20,6 +20,6 @@ function Update () {
 	
 	if(Input.GetButton("Continue")|| Input.GetAxis("Continue")){
 	count++;
-	Application.LoadLevel(2);
+	Application.LoadLevel(1);
 	}
 }

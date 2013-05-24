@@ -17,7 +17,7 @@ function Start ()
 {
 	
     timer = 0.0;
-   	StartCreation();
+   
 
 }
 
@@ -47,31 +47,31 @@ function PickTargetLocation(){
 	targetNumber = 4;
 	}
 	if (targetNumber == 1){
-		this.transform.position.x = 6.75;
-		this.transform.position.y = 48.2;
-		this.transform.rotation.z = 0;
+		this.transform.position.x = 0;
+		this.transform.position.y = 25;
 		velocity = new Vector2(0,-1);
+		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 2){
-		this.transform.position.x = 38;
-		this.transform.position.y = 16.8;		
-		this.transform.rotation.z = -90;
+		this.transform.position.x = 32;
+		this.transform.position.y = 0;		
 		velocity = new Vector2(-1,0);
+		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 3){
-		this.transform.position.x = 6.75;
-		this.transform.position.y = -15.2;
-		this.transform.rotation.z = 180;
+		this.transform.position.x = 0;
+		this.transform.position.y =-25;
 		velocity = new Vector2(0,1);
+		CreatePiece();
 		GetRotation();
 	}
 	if (targetNumber == 4){
-		this.transform.position.x = -25.8;
-		this.transform.position.y = 16.8;
-		this.transform.rotation.z = 90;
+		this.transform.position.x = -32;
+		this.transform.position.y = 0;
 		velocity = new Vector2(1,0);
+		CreatePiece();
 		GetRotation();
 	}
 }
@@ -94,9 +94,7 @@ if (currentPiece)
     	piece.velocity.x = this.velocity.x;  
     	piece.velocity.y = this.velocity.y;
     	
-    	// hold reference to piece
-    	currentPiece = piece;
-
+    	
 
 
 }

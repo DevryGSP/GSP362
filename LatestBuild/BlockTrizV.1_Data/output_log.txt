@@ -1,0 +1,23 @@
+Initialize engine version: 4.1.2f1 (911c7369eeac)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1140]
+    Renderer: AMD Radeon HD 7520G
+    Vendor:   ATI
+    VRAM:     1256 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 DF24=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Patrick Rasmussen\Documents\GitHub\GSP362\LatestBuild\BlockTrizV.1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Patrick Rasmussen\Documents\GitHub\GSP362\LatestBuild\BlockTrizV.1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Patrick Rasmussen\Documents\GitHub\GSP362\LatestBuild\BlockTrizV.1_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Patrick Rasmussen\Documents\GitHub\GSP362\LatestBuild\BlockTrizV.1_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+- Completed reload, in  0.085 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 357.
+Total: 4.233601 ms (FindLiveObjects: 0.039136 ms CreateObjectMapping: 0.055855 ms MarkObjects: 1.963673 ms  DeleteObjects: 0.151227 ms)
+
+Platform assembly: C:\Users\Patrick Rasmussen\Documents\GitHub\GSP362\LatestBuild\BlockTrizV.1_Data\Managed\UnityScript.Lang.dll (this message is harmless)
