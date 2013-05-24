@@ -1,0 +1,125 @@
+#pragma strict
+
+var pieces : GameObject[];
+var delay : Number = 5.0;
+var speed : Number = 2.0;
+var velocity : Vector2;
+
+
+var targetNumber : float;
+//@HideInInspector
+var timer : Number;
+
+//@HideInInspector
+var currentPiece:Piece;
+
+function Start ()
+{
+	
+    timer = 0.0;
+   	StartCreation();
+
+}
+
+function Update ()
+{
+    if (timer > 0.0)
+    {
+        timer -= Time.deltaTime;
+    }
+    else
+    {
+        timer = delay;        
+		StartCreation();
+    }
+    
+}
+
+function StartCreation(){
+PickTargetLocation();
+
+}
+
+function PickTargetLocation(){
+	
+	targetNumber = Random.Range(1,5);
+	if (targetNumber == 5){
+	targetNumber = 4;
+	}
+	if (targetNumber == 1){
+		this.transform.position.x = 6.75;
+		this.transform.position.y = 48.2;
+		this.transform.rotation.z = 0;
+		velocity = new Vector2(0,-1);
+		GetRotation();
+	}
+	if (targetNumber == 2){
+		this.transform.position.x = 38;
+		this.transform.position.y = 16.8;		
+		this.transform.rotation.z = -90;
+		velocity = new Vector2(-1,0);
+		GetRotation();
+	}
+	if (targetNumber == 3){
+		this.transform.position.x = 6.75;
+		this.transform.position.y = -15.2;
+		this.transform.rotation.z = 180;
+		velocity = new Vector2(0,1);
+		GetRotation();
+	}
+	if (targetNumber == 4){
+		this.transform.position.x = -25.8;
+		this.transform.position.y = 16.8;
+		this.transform.rotation.z = 90;
+		velocity = new Vector2(1,0);
+		GetRotation();
+	}
+}
+
+function CreatePiece(){
+if (currentPiece)
+     	{
+     		currentPiece.isSelected = false;
+   
+     	}
+     	
+     	// randomly choose a piece
+     	var prefab:GameObject = pieces[Random.Range(0, pieces.Length)];
+     	
+     	// spawn piece
+    	var o:GameObject = Instantiate(prefab, this.transform.position, this.transform.rotation);
+    	var piece:Piece = o.GetComponent("Piece") as Piece;
+    	piece.isSelected = true;
+    	piece.speed = speed;
+    	piece.velocity.x = this.velocity.x;  
+    	piece.velocity.y = this.velocity.y;
+    	
+    	// hold reference to piece
+    	currentPiece = piece;
+
+
+
+}
+
+function GetRotation(){
+var getRotation = Random.Range(1,5);
+var target: GameObject;
+target = GameObject.FindWithTag("piece");
+
+if ( getRotation == 1){
+//target.transform.localRotation.x = 0;
+}
+
+if ( getRotation == 2){
+//target.transform.localRotation.x = 90;
+}
+
+if ( getRotation == 3){
+//target.transform.localRotation.x = 180;
+}
+
+if ( getRotation == 1){
+//target.transform.localRotation.x = 270;
+}
+
+}
