@@ -7,18 +7,46 @@ var velocity:Vector2;
 var speed:int;
 
 @HideInInspector
+var moveTimer:float;
+
+@HideInInspector
 var isSelected:boolean;
 
 function Start ()
 {
-	velocity.x *= speed;
-	velocity.y *= speed;
+	moveTimer = speed;
 }
 
 function Update ()
 {
-	this.transform.position.x += Time.deltaTime * velocity.x;	
-	this.transform.position.y += Time.deltaTime * velocity.y;	
+	if (moveTimer > 0.0)
+	{
+		moveTimer -= 100 * Time.deltaTime;
+	}
+	else
+	{	
+		moveTimer = speed;
+		
+		if (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
+		{	
+			this.transform.position.x += velocity.x;
+			this.transform.position.y += velocity.y;
+		}
+		else
+		{
+			isSelected = false;
+		   	
+		   	// remove all children from this parent
+		   	var count:int = this.transform.GetChildCount();
+		   	for (var i:int = 0; i < count; i++)
+		   	{
+		   		this.transform.GetChild(0).parent = GameObject.Find("BlockContainer").transform;
+		   	}
+		   	
+		   	// destroy self
+			Destroy(this.gameObject);
+		}
+	}
 	
 	if (isSelected)
 	{
@@ -86,11 +114,11 @@ function Update ()
 }
 
 // moves peice to specified position and check children for collisions
-function Collide(x:Number, y:Number)
+function Collide(x:float, y:float):boolean
 {
 	// save position
-	var oldX:Number = this.transform.position.x;
-	var oldY:Number = this.transform.position.y;
+	var oldX:float = this.transform.position.x;
+	var oldY:float = this.transform.position.y;
 	
 	// move to new position
 	this.transform.position.x = x;
@@ -116,24 +144,4 @@ function Collide(x:Number, y:Number)
    	this.transform.position.y = oldY;
    	
    	return false;
-}
-
-// when a child collides with a sold, this function is called
-function OnChildTriggerEnter (other : Collider)
-{
-	// snap pice to the grid
-	this.transform.position.x = Mathf.Ceil(this.transform.position.x / 1);
-	this.transform.position.y = Mathf.Ceil(this.transform.position.y / 1);
-	
-	isSelected = false;
-	   	
-   	// remove all children from this parent
-   	var count:int = this.transform.GetChildCount();
-   	for (var i:int = 0; i < count; i++)
-   	{
-   		this.transform.GetChild(0).parent = GameObject.Find("BlockContainer").transform;
-   	}
-   	
-   	// destroy self
-	Destroy(this.gameObject);
 }
