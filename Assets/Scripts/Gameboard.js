@@ -48,13 +48,17 @@ function Update ()
 
 function getSideIndex(side:String):int
 {
+	var index:int = 0;
+	
 	switch(side)
 	{
-		case "Top": return 0; 
-		case "Right": return 1;
-		case "Bottom": return 2;
-		case "Left": return 3;
+		case "Top": index = 0; break;
+		case "Right": index = 1; break;
+		case "Bottom": index = 2; break;
+		case "Left":  index = 3; break;
 	}
+	
+	return index;
 }
 
 public function onLineFull(trigger:LineTrigger, side:String):void
