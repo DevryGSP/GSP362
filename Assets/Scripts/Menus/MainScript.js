@@ -18,7 +18,7 @@ function Update () {
 	title.position.y = .848;
 	}
 	
-	if(Input.GetButton("Continue")|| Input.GetAxis("Continue")){
+	if(Input.GetButton("Starter")){
 	count++;
 	Application.LoadLevel(1);
 	}
