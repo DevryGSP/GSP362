@@ -16,7 +16,9 @@ function Collide(x:Number, y:Number):boolean
 	var colliders = Physics.OverlapSphere(new Vector3(x, y, this.transform.position.z), 0.48);
 	for (var i:int = 0; i < colliders.length; i++)
 	{
-		if (colliders[i].transform.tag == "block" || colliders[i].transform.tag == "gameboard")
+		if (colliders[i].transform.tag == "block" 
+		|| colliders[i].transform.tag == "gameboard"
+		|| colliders[i].transform.tag == "border")
 		{
 			// if has parent
 			if (colliders[i].transform.parent)
