@@ -82,7 +82,7 @@ function Update ()
 		// if moving left or right
 		if (this.velocity.x != 0)
 		{
-			if (Input.GetAxis("Vertical") < 0 && canMovePiece)
+			if (Input.GetAxis("Vertical") < 0 && canMovePiece  || Input.GetKeyDown("up") && canMovePiece)
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x, this.transform.position.y + 1))
@@ -90,7 +90,7 @@ function Update ()
 					this.transform.position.y += 1;
 				}
 			}
-			else if (Input.GetAxis("Vertical") > 0 && canMovePiece)
+			else if (Input.GetAxis("Vertical") > 0 && canMovePiece || Input.GetKeyDown("down") && canMovePiece)
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x, this.transform.position.y - 1))
@@ -98,7 +98,7 @@ function Update ()
 					this.transform.position.y -= 1;
 				}
 			}
-			else if (Input.GetAxis("Vertical") == 0)
+			else if (Input.GetAxis("Vertical") == 0 || Input.GetKeyDown("up") == false || Input.GetKeyDown("down") == false)
 			{
 				canMovePiece = true;
 			}
@@ -106,7 +106,7 @@ function Update ()
 		// if moving up or down
 		else if (this.velocity.y != 0)
 		{
-			if (Input.GetAxis("Horizontal") < 0 && canMovePiece)
+			if (Input.GetAxis("Horizontal") < 0 && canMovePiece || Input.GetKeyDown("left") && canMovePiece)
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x - 1, this.transform.position.y))
@@ -114,7 +114,7 @@ function Update ()
 					this.transform.position.x -= 1;
 				}
 			}
-			else if (Input.GetAxis("Horizontal") > 0 && canMovePiece)
+			else if (Input.GetAxis("Horizontal") > 0 && canMovePiece ||  Input.GetKeyDown("right") && canMovePiece)
 			{
 			 	canMovePiece = false;
 				if (!Collide(this.transform.position.x + 1, this.transform.position.y))
@@ -122,7 +122,7 @@ function Update ()
 					this.transform.position.x += 1;
 				}
 			}
-			else if (Input.GetAxis("Horizontal") == 0)
+			else if (Input.GetAxis("Horizontal") == 0 ||  Input.GetKeyDown("right") == false || Input.GetKeyDown("left") == false)
 			{
 				canMovePiece = true;
 			}
