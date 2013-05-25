@@ -51,7 +51,7 @@ function Update ()
 	if (isSelected)
 	{
 		// block rotation
-		if (Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetButtonDown("RotateCounter"))
 		{
 			this.transform.Rotate(Vector3(0, 0, 90));
 			
@@ -62,7 +62,7 @@ function Update ()
 				this.transform.Rotate(Vector3(0, 0, -90));
 			}
 		}
-		else if (Input.GetKeyDown(KeyCode.E))
+		else if (Input.GetButtonDown("RotateClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, -90));
 			
@@ -77,14 +77,14 @@ function Update ()
 		// if moving left or right
 		if (this.velocity.x != 0)
 		{
-			if (Input.GetKeyDown(KeyCode.UpArrow))
+			if (Input.GetAxis("Vertical") > 0)
 			{
 				if (!Collide(this.transform.position.x, this.transform.position.y + 1))
 				{
 					this.transform.position.y += 1;
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.DownArrow))
+			else if (Input.GetAxis("Vertical") < 0)
 			{
 				if (!Collide(this.transform.position.x, this.transform.position.y - 1))
 				{
@@ -95,14 +95,14 @@ function Update ()
 		// if moving up or down
 		else if (this.velocity.y != 0)
 		{
-			if (Input.GetKeyDown(KeyCode.LeftArrow))
+			if (Input.GetAxis("Horizontal")<0)
 			{
 				if (!Collide(this.transform.position.x - 1, this.transform.position.y))
 				{
 					this.transform.position.x -= 1;
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.RightArrow))
+			else if (Input.GetAxis("Horizontal")>0)
 			{
 				if (!Collide(this.transform.position.x + 1, this.transform.position.y))
 				{
