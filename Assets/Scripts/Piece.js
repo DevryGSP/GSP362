@@ -78,7 +78,6 @@ function Update ()
 			}
 		}
 		
-		print(Input.GetAxis("Vertical") + "," + Input.GetAxis("Horizontal"));
 		// if moving left or right
 		if (this.velocity.x != 0)
 		{
