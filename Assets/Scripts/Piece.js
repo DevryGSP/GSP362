@@ -54,6 +54,16 @@ function Update ()
 	
 	if (isSelected)
 	{
+		// fast drop
+		if (Input.GetKeyDown(KeyCode.W))
+		{
+			while (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
+			{
+				this.transform.position.x += velocity.x;
+				this.transform.position.y += velocity.y;
+			}
+		}
+	
 		// block rotation
 		if (Input.GetButtonDown("RotateCounter"))
 		{

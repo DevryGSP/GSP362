@@ -11,11 +11,13 @@ var currentPiece:Piece;
 var timer:float;
 
 @HideInInspector
-var index:int; // holds the last spawned position index
+var indices:ArrayList;
 
 function Start ()
 {
-	index = 0;
+	indices = new ArrayList();
+	indices.AddRange( [0, 1, 2, 3] );
+	
 	timer = delay;
 	
     SpawnPiece();
@@ -39,14 +41,18 @@ function Update ()
 
 function SpawnPiece()
 {
+	// ---- GET INDEX
+	// refill array if all used
+	if (indices.Count == 0) { indices.AddRange( [0, 1, 2, 3] ); }
+	// choose index
+	var i = Random.Range(0, indices.Count);
+	var index:int = indices[i];
+	// remove used index from array
+	indices.RemoveAt(i);
+	
 	// ---- POSITION
 	var locations:Vector2[] = [Vector2(0, 32), Vector2(32, 0), Vector2(0, -32), Vector2(-32, 0)];
 	var direction:Vector2[] = [Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0)];
-	var indices:int[] = [0, 1, 2, 3];
-	// remove last used index
-	Array(indices).RemoveAt(index);
-	// choose index
-	index = Random.Range(0, locations.Length-1);
 	// set spawner to location
 	this.transform.position.x = locations[index].x;
 	this.transform.position.y = locations[index].y;
@@ -58,7 +64,7 @@ function SpawnPiece()
 	
 	// ---- SPAWN
 	// randomly choose a piece
- 	var prefab:GameObject = pieces[Random.Range(0, pieces.Length-1)];
+ 	var prefab:GameObject = pieces[Random.Range(0, pieces.Length)];
  	// spawn piece
 	var o:GameObject = Instantiate(prefab, this.transform.position, this.transform.rotation);
 	var piece:Piece = o.GetComponent("Piece") as Piece;

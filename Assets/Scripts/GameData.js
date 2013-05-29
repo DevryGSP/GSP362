@@ -1,9 +1,9 @@
 #pragma strict
 
-var score;
-var lines;
-var level;
-var linesRemaining;
+var score:int;
+var lines:int;
+var level:int;
+var linesRemaining:int;
 
 function Start ()
 {

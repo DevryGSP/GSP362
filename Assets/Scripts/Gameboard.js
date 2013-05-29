@@ -4,10 +4,15 @@ var triggerPrefab:GameObject;
 var lineCount:int;
 
 @HideInInspector
-var sides : boolean[,];
+var sides:boolean[,];
+
+@HideInInspector
+var ringsCleared:int;
 
 function Start ()
 {
+	ringsCleared = 0;
+
 	// names of sides
 	var sideNames:String[] = ["Top", "Right", "Bottom", "Left"];
 	// directions to place triggers
@@ -43,7 +48,17 @@ function Start ()
 
 function Update ()
 {
-	
+	if (ringsCleared > 0)
+	{
+		// add score
+		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData);
+		gameData.score += 100 * ringsCleared;
+		
+		print(gameData.score);
+		
+		// reset ring count
+		ringsCleared = 0;
+	}
 }
 
 function getSideIndex(side:String):int
@@ -81,6 +96,8 @@ public function onLineFull(trigger:LineTrigger, side:String):void
 	(this.transform.Find("Left").GetChild(trigger.position).GetComponent("LineTrigger") as LineTrigger).ClearBlocks();
 	(this.transform.Find("Right").GetChild(trigger.position).GetComponent("LineTrigger") as LineTrigger).ClearBlocks();
 	(this.transform.Find("Bottom").GetChild(trigger.position).GetComponent("LineTrigger") as LineTrigger).ClearBlocks();
+	
+	ringsCleared++;
 }
 
 public function OnLineClear(trigger:LineTrigger, side:String):void
