@@ -15,8 +15,12 @@ var isSelected:boolean;
 @HideInInspector
 var canMovePiece:boolean;
 
+@HideInInspector
+var hasCollided:boolean;
+
 function Start ()
 {
+	hasCollided = false;
 	canMovePiece = true;
 	moveTimer = speed;
 }
@@ -29,26 +33,33 @@ function Update ()
 	}
 	else
 	{	
-		moveTimer = speed;
-		
 		if (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
 		{	
+			moveTimer = speed;
 			this.transform.position.x += velocity.x;
 			this.transform.position.y += velocity.y;
 		}
 		else
 		{
-			isSelected = false;
-		   	
-		   	// remove all children from this parent
-		   	var count:int = this.transform.GetChildCount();
-		   	for (var i:int = 0; i < count; i++)
-		   	{
-		   		this.transform.GetChild(0).parent = GameObject.Find("BlockContainer").transform;
-		   	}
-		   	
-		   	// destroy self
-			Destroy(this.gameObject);
+			if (!hasCollided)
+			{
+				hasCollided = true;
+				moveTimer = 20;
+			}
+			else
+			{
+				isSelected = false;
+			   	
+			   	// remove all children from this parent
+			   	var count:int = this.transform.GetChildCount();
+			   	for (var i:int = 0; i < count; i++)
+			   	{
+			   		this.transform.GetChild(0).parent = GameObject.Find("BlockContainer").transform;
+			   	}
+			   	
+			   	// destroy self
+				Destroy(this.gameObject);
+			}
 		}
 	}
 	

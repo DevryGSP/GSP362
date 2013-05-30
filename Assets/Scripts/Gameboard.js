@@ -36,7 +36,7 @@ function Start ()
 			var dX:float = (this.transform.localScale.x * 0.5 + j + 0.5) * directions[i].x;
 			var dY:float = (this.transform.localScale.y * 0.5 + j + 0.5) * directions[i].y;
 			
-			var pos:Vector3 = new Vector3(this.transform.position.x + dX, this.transform.position.y + dY, 0);
+			var pos:Vector3 = new Vector3(this.transform.position.x + dX, this.transform.position.y + dY, this.transform.position.z);
 			
 			var trigger:GameObject = Instantiate(triggerPrefab, pos, Quaternion.Euler(0, 0, (directions[i].x != 0) ? 90 : 0));
 			trigger.transform.parent = parent.transform;
