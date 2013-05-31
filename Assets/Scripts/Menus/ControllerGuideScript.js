@@ -7,7 +7,7 @@
 // updates to see if raycast returns a hit and checks that hit name for advancement or exit.
 function Update()
 {
-Debug.Log("This works");
+
 
     //check if the left mouse has been pressed down this frame
     if (Input.GetMouseButtonDown(0))
@@ -22,31 +22,10 @@ Debug.Log("This works");
         {
         Debug.Log(hit.collider.name);
         // starts game.
-        if (hit.collider.name == "Start")
+        if (hit.collider.name == "Back")
          {
-         	Application.LoadLevel(1);
+         	Application.LoadLevel(2);
          }
-         // loads controller guide
-         if (hit.collider.name == "ControllerGuide")
-         {
-         	Application.LoadLevel(3);
-         } 
-         
-         if (hit.collider.name == "HowToPlay")
-         {
-         	Application.LoadLevel(4);
-         } 
-         
-         if (hit.collider.name == "Credits")
-         {
-         	Application.LoadLevel(5);
-         } 
-         
-         // exits game 
-         if (hit.collider.name == "Exit")
-         {
-         	Application.Quit();
-         }   
-        }
+      }
     }
 }
