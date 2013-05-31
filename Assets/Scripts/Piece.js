@@ -66,7 +66,7 @@ function Update ()
 	if (isSelected)
 	{
 		// fast drop
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetButtonDown("QuickDrop"))
 		{
 			while (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
 			{
@@ -76,7 +76,7 @@ function Update ()
 		}
 	
 		// block rotation
-		if (Input.GetButtonDown("RotateCounter"))
+		if (Input.GetButtonDown("RotCountClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, 90));
 			
@@ -87,7 +87,7 @@ function Update ()
 				this.transform.Rotate(Vector3(0, 0, -90));
 			}
 		}
-		else if (Input.GetButtonDown("RotateClock"))
+		else if (Input.GetButtonDown("RotClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, -90));
 			
@@ -102,7 +102,7 @@ function Update ()
 		// if moving left or right
 		if (this.velocity.x != 0)
 		{
-			if ((Input.GetAxis("Vertical") < 0 && canMovePiece) || Input.GetKeyDown("up"))
+			if (canMovePiece && (Input.GetAxis("Vertical") < 0 || Input.GetAxis("GP_Vertical") < 0 || Input.GetAxis("DPad_Vertical") < 0))
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x, this.transform.position.y + 1))
@@ -110,7 +110,7 @@ function Update ()
 					this.transform.position.y += 1;
 				}
 			}
-			else if ((Input.GetAxis("Vertical") > 0 && canMovePiece) || Input.GetKeyDown("down"))
+			else if (canMovePiece && (Input.GetAxis("Vertical") > 0 || Input.GetAxis("GP_Vertical") > 0 || Input.GetAxis("DPad_Vertical") > 0))
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x, this.transform.position.y - 1))
@@ -118,7 +118,7 @@ function Update ()
 					this.transform.position.y -= 1;
 				}
 			}
-			else if (Input.GetAxis("Vertical") == 0)
+			else if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("DPad_Vertical") == 0)
 			{
 				canMovePiece = true;
 			}
@@ -126,7 +126,7 @@ function Update ()
 		// if moving up or down
 		else if (this.velocity.y != 0)
 		{
-			if ((Input.GetAxis("Horizontal") < 0 && canMovePiece) || Input.GetKeyDown("left"))
+			if (canMovePiece && (Input.GetAxis("Horizontal") < 0 || Input.GetAxis("GP_Horizontal") < 0 || Input.GetAxis("DPad_Horizontal") < 0))
 			{
 				canMovePiece = false;
 				if (!Collide(this.transform.position.x - 1, this.transform.position.y))
@@ -134,7 +134,7 @@ function Update ()
 					this.transform.position.x -= 1;
 				}
 			}
-			else if ((Input.GetAxis("Horizontal") > 0 && canMovePiece) ||  Input.GetKeyDown("right"))
+			else if (canMovePiece && (Input.GetAxis("Horizontal") > 0 ||  Input.GetAxis("GP_Horizontal") > 0 || Input.GetAxis("DPad_Horizontal") > 0))
 			{
 			 	canMovePiece = false;
 				if (!Collide(this.transform.position.x + 1, this.transform.position.y))
@@ -142,7 +142,7 @@ function Update ()
 					this.transform.position.x += 1;
 				}
 			}
-			else if (Input.GetAxis("Horizontal") == 0)
+			else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("DPad_Horizontal") == 0)
 			{
 				canMovePiece = true;
 			}
