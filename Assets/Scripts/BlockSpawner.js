@@ -11,15 +11,17 @@ var currentPiece:Piece;
 var timer:float;
 
 @HideInInspector
-var indices:ArrayList;
+var index:int;
+
+@HideInInspector
+var rotateClockwise:boolean;
 
 function Start ()
 {
-	indices = new ArrayList();
-	indices.AddRange( [0, 1, 2, 3] );
+	index = Random.Range(0, 3);
+	rotateClockwise = (Random.value < 0.5) ? true : false;
 	
 	timer = delay;
-	
     SpawnPiece();
 }
 
@@ -42,13 +44,14 @@ function Update ()
 function SpawnPiece()
 {
 	// ---- GET INDEX
-	// refill array if all used
-	if (indices.Count == 0) { indices.AddRange( [0, 1, 2, 3] ); }
-	// choose index
-	var i = Random.Range(0, indices.Count);
-	var index:int = indices[i];
-	// remove used index from array
-	indices.RemoveAt(i);
+	if (rotateClockwise)
+	{
+		index = (index < 3) ? index + 1: 0;
+	}
+	else
+	{
+		index = (index > 0) ? index - 1: 3;
+	}
 	
 	// ---- POSITION
 	var locations:Vector2[] = [Vector2(0, 32), Vector2(32, 0), Vector2(0, -32), Vector2(-32, 0)];
