@@ -80,23 +80,13 @@ function Update ()
 		{
 			this.transform.Rotate(Vector3(0, 0, 90));
 			
-			// if rotating puts piece in collision
-			if (Collide(this.transform.position.x, this.transform.position.y))
-			{
-				// rotate back
-				this.transform.Rotate(Vector3(0, 0, -90));
-			}
+			CheckRotatedCollisions();
 		}
 		else if (Input.GetButtonDown("RotClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, -90));
 			
-			// if rotating puts piece in collision
-			if (Collide(this.transform.position.x, this.transform.position.y))
-			{
-				// rotate back	
-				this.transform.Rotate(Vector3(0, 0, 90));
-			}
+			CheckRotatedCollisions();
 		}
 		
 		// if moving left or right
@@ -150,8 +140,31 @@ function Update ()
 	}
 }
 
+function CheckRotatedCollisions()
+{
+	var c = Collide(this.transform.position.x, this.transform.position.y);
+	while (c)
+	{
+		// take a step out of collision
+		switch(c.name)
+		{
+			case "NorthLeft":	this.transform.position.x++; break;
+			case "NorthRight":	this.transform.position.x--; break;
+			case "SouthLeft":	this.transform.position.x--; break;
+			case "SouthRight":	this.transform.position.x++; break;
+			case "EastLeft":	this.transform.position.y--; break;
+			case "EastRight":	this.transform.position.y++; break;
+			case "WestLeft":	this.transform.position.y++; break;
+			case "WestRight":	this.transform.position.y--; break;
+		}
+		
+		// check for collisions at new position
+		c = Collide(this.transform.position.x, this.transform.position.y);
+	}
+}
+
 // moves peice to specified position and check children for collisions
-function Collide(x:float, y:float):boolean
+function Collide(x:float, y:float):Collider
 {
 	// save position
 	var oldX:float = this.transform.position.x;
@@ -166,13 +179,14 @@ function Collide(x:float, y:float):boolean
    	for (var i:int = 0; i < count; i++)
    	{
    		var block:Block = this.transform.GetChild(i).GetComponent("Block") as Block;
-   		if (block.Collide(block.transform.position.x, block.transform.position.y))
+   		var c:Collider = block.Collide(block.transform.position.x, block.transform.position.y);
+   		if (c)
    		{
    			// move back to original pos
    			this.transform.position.x = oldX;
    			this.transform.position.y = oldY;
    		
-   			return true;
+   			return c;
    		}
    	}
    	
@@ -180,5 +194,5 @@ function Collide(x:float, y:float):boolean
    	this.transform.position.x = oldX;
    	this.transform.position.y = oldY;
    	
-   	return false;
+   	return null;
 }

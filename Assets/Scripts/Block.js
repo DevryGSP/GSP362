@@ -10,7 +10,7 @@ function Update ()
 }
 
 // checks for collisions at the specified position
-function Collide(x:Number, y:Number):boolean
+function Collide(x:Number, y:Number):Collider
 {
 	// get all overlapping colliders
 	var colliders = Physics.OverlapSphere(new Vector3(x, y, this.transform.position.z), 0.48);
@@ -30,23 +30,23 @@ function Collide(x:Number, y:Number):boolean
 					if (colliders[i].transform.parent != this.transform.parent)
 					{
 						// collided with block
-						return true;
+						return colliders[i];
 					}
 				}
 				else
 				{
 					// collided with block that was part of another piece
-					return true;
+					return colliders[i];
 				}
 			}
 			else
 			{
 				// collided game board
-				return true;
+				return colliders[i];
 			}
 		}
 	}
 	
 	// collided with none or colliders were part of same piece
-	return false;
+	return null;
 }
