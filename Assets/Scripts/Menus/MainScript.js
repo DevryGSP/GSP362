@@ -1,15 +1,17 @@
 #pragma strict
 //intro variables for gui for scroll and blink
+///public
 var intro: Transform;
 var title: Transform;
-var titleSpeed: int = .2;
+//private
+private var titleSpeed: float = .30f;
 
-function Start () {
-title.position.y = -.7;
+function Awake(){
+title.position.y = 0;
 }
-var count: int;
-function Update () {
-	count = 0;
+
+
+function Update () {	
 	if(title.position.y <= .848){
 	title.transform.Translate(Vector3.up * titleSpeed * Time.deltaTime);
 	}
@@ -19,7 +21,6 @@ function Update () {
 	}
 	
 	if(Input.GetButton("Starter")){
-	count++;
-	Application.LoadLevel(1);
+	Application.LoadLevel(2);
 	}
 }
