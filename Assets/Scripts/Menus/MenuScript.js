@@ -1,7 +1,7 @@
 #pragma strict
 /////////////////////////////////////
 // menuScript created by patrick rasmussen 
-// Script handles mouseclicks on triggers for menu system.
+// Main menu script handles the selections through the games menu system.
 /////////////////////////////////////
 
 // updates to see if raycast returns a hit and checks that hit name for advancement or exit.
@@ -22,28 +22,28 @@ Debug.Log("This works");
         {
         Debug.Log(hit.collider.name);
         // starts game.
-        if (hit.collider.name == "Start")
+        if (hit.collider.name == "start")
          {
          	Application.LoadLevel(1);
          }
          // loads controller guide
-         if (hit.collider.name == "ControllerGuide")
+         if (hit.collider.name == "controllerguide")
          {
          	Application.LoadLevel(3);
          } 
-         
-         if (hit.collider.name == "HowToPlay")
+         // loads how to pla
+         if (hit.collider.name == "howtoplay")
          {
          	Application.LoadLevel(4);
          } 
-         
-         if (hit.collider.name == "Credits")
+         // loads the credits.
+         if (hit.collider.name == "credits")
          {
          	Application.LoadLevel(5);
          } 
          
          // exits game 
-         if (hit.collider.name == "Exit")
+         if (hit.collider.name == "exit")
          {
          	Application.Quit();
          }   

@@ -1,13 +1,12 @@
 #pragma strict
 /////////////////////////////////////
-// menuScript created by patrick rasmussen 
-// Script handles mouseclicks on triggers for menu system.
+// pauseScript created by patrick rasmussen 
+// The pause menu contains the ability for the player to exit or restart the game.
 /////////////////////////////////////
 
 // updates to see if raycast returns a hit and checks that hit name for advancement or exit.
 function Update()
 {
-Debug.Log("This works");
 
     //check if the left mouse has been pressed down this frame
     if (Input.GetMouseButtonDown(0))
@@ -21,32 +20,17 @@ Debug.Log("This works");
         if (Physics.Raycast(ray, hit))
         {
         Debug.Log(hit.collider.name);
-        // starts game.
-        if (hit.collider.name == "Start")
+        // restarts game.
+        if (hit.collider.name == "Restart")
          {
          	Application.LoadLevel(1);
          }
-         // loads controller guide
-         if (hit.collider.name == "ControllerGuide")
-         {
-         	Application.LoadLevel(3);
-         } 
-         
-         if (hit.collider.name == "HowToPlay")
-         {
-         	Application.LoadLevel(4);
-         } 
-         
-         if (hit.collider.name == "Credits")
-         {
-         	Application.LoadLevel(5);
-         } 
-         
-         // exits game 
+       	// exits game 
          if (hit.collider.name == "Exit")
          {
          	Application.Quit();
          }  
+         // reloads the last level 
            if (hit.collider.name == "Back2")
          {
          	Application.LoadLevel(7);

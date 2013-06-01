@@ -1,7 +1,7 @@
 #pragma strict
 /////////////////////////////////////
-// menuScript created by patrick rasmussen 
-// Script handles mouseclicks on triggers for menu system.
+// ControllerGuideScript created by patrick rasmussen 
+// Script handles the back button for player to learn possible controls.
 /////////////////////////////////////
 
 // updates to see if raycast returns a hit and checks that hit name for advancement or exit.
@@ -21,8 +21,8 @@ function Update()
         if (Physics.Raycast(ray, hit))
         {
         Debug.Log(hit.collider.name);
-        // starts game.
-        if (hit.collider.name == "Back")
+        // backs to the main menu.
+        if (hit.collider.name == "back")
          {
          	Application.LoadLevel(2);
          }

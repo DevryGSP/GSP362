@@ -1,8 +1,13 @@
 #pragma strict
+/////////////////////////////////////
+// ControllerGuideScript created by patrick rasmussen 
+// Script handles the back button for player to learn possible controls.
+/////////////////////////////////////
 
 //intro variables for gui for scroll and blink
+
 ///public
-var title: Transform;
+var scrollblock: Transform;
 //private
 private var titleSpeed: float = .10f;
 
@@ -13,12 +18,13 @@ function Awake(){
 
 function Update () {	
 	
-	// handles the transform of the title
-	if(title.position.y <= 1.52){
-	title.transform.Translate(Vector3.up * titleSpeed * Time.deltaTime);
+	// checks if scroll has left screen and moves up if not 
+	if(scrollblock.position.y <= 1.52){
+	scrollblock.transform.Translate(Vector3.up * titleSpeed * Time.deltaTime);
 	}
+	// once the scroll is off screen reposition at bottom.
 	else{
-		title.position.y = -.32f;
+		scrollblock.position.y = -.32f;
 	}
 	
 	//check if the left mouse has been pressed down this frame
@@ -32,8 +38,8 @@ function Update () {
         if (Physics.Raycast(ray, hit)){
         
         Debug.Log(hit.collider.name);
-        // starts game.
-        if (hit.collider.name == "Back2"){
+        // goes back to main menu
+        if (hit.collider.name == "back"){
          	Application.LoadLevel(2);
          }
       }
