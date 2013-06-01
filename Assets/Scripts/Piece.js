@@ -76,17 +76,18 @@ function Update ()
 		}
 	
 		// block rotation
+		var c:Collider;
 		if (Input.GetButtonDown("RotCountClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, 90));
 			
-			CheckRotatedCollisions();
+			CheckRotatedCollisions(90);
 		}
 		else if (Input.GetButtonDown("RotClock"))
 		{
 			this.transform.Rotate(Vector3(0, 0, -90));
 			
-			CheckRotatedCollisions();
+			CheckRotatedCollisions(-90);
 		}
 		
 		// if moving left or right
@@ -140,11 +141,12 @@ function Update ()
 	}
 }
 
-function CheckRotatedCollisions()
+function CheckRotatedCollisions(rotation:float):void
 {
 	var c = Collide(this.transform.position.x, this.transform.position.y);
+	var itr:int = 0;
 	while (c)
-	{
+	{		
 		// take a step out of collision
 		switch(c.name)
 		{
@@ -156,6 +158,23 @@ function CheckRotatedCollisions()
 			case "EastRight":	this.transform.position.y++; break;
 			case "WestLeft":	this.transform.position.y++; break;
 			case "WestRight":	this.transform.position.y--; break;
+			case "Gameboard":
+				this.transform.position.x -= this.velocity.x;
+				this.transform.position.y -= this.velocity.y;
+				break;
+			default: 
+				//print("collider not defined!");
+				this.transform.Rotate(Vector3(0, 0, -rotation));
+				return;
+		}
+		
+		// in case stuck in collision too long, break from loop
+		itr++;
+		if (itr > 100)
+		{
+			//print("too many iterations"); 
+			this.transform.Rotate(Vector3(0, 0, -rotation));
+			return;
 		}
 		
 		// check for collisions at new position
