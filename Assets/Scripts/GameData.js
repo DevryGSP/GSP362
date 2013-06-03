@@ -1,5 +1,7 @@
 #pragma strict
 
+var levelNames:String[];
+
 static var score:int;
 static var rings:int;
 static var level:int;
@@ -10,7 +12,7 @@ function Start ()
 {
 	score = 0;
 	rings = 0;
-	level = 1;
+	level = 0;
 	ringsRemaining = 10;
 }
 
@@ -22,7 +24,7 @@ function Update ()
 function OnGUI()
 {
 	GUI.skin = guiskin;
-	GUI.Label(Rect(618, 658, 200, 40), level.ToString());
+	GUI.Label(Rect(618, 658, 200, 40), (level + 1).ToString());
 	GUI.Label(Rect(810, 658, 200, 40), "levelname");
 	
 	GUI.Label(Rect(623, 690, 200, 40), rings.ToString());
