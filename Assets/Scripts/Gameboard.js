@@ -1,5 +1,7 @@
 #pragma strict
 
+var planets:Material[];
+
 var triggerPrefab:GameObject;
 var lineCount:int;
 
