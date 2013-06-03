@@ -70,10 +70,18 @@ function SpawnPiece()
  	var prefab:GameObject = pieces[Random.Range(0, pieces.Length)];
  	// spawn piece
 	var o:GameObject = Instantiate(prefab, this.transform.position, this.transform.rotation);
+	// init vars
 	var piece:Piece = o.GetComponent("Piece") as Piece;
 	piece.isSelected = true;
 	piece.speed = speed;
 	piece.velocity = direction[index];
+	// assign material
+	var gameboard:Gameboard = GameObject.Find("Gameboard").GetComponent(Gameboard) as Gameboard;
+	var matIndex:int = GameData.level + Random.Range(0,2);
+	for (var i:int = 0; i < o.transform.childCount; i++)
+	{
+		o.transform.GetChild(i).renderer.material = gameboard.pieces[matIndex];
+	}
 	
 	// store references
 	currentPiece = piece;
