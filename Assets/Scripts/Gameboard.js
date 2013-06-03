@@ -50,11 +50,9 @@ function Update ()
 {
 	if (ringsCleared > 0)
 	{
-		// add score
+		// send data to game data class
 		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData);
-		gameData.score += 100 * ringsCleared;
-		
-		print(gameData.score);
+		gameData.OnBlocksCleared(ringsCleared);
 		
 		// reset ring count
 		ringsCleared = 0;
