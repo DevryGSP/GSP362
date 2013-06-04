@@ -73,6 +73,9 @@ function Update ()
 				this.transform.position.x += velocity.x;
 				this.transform.position.y += velocity.y;
 			}
+			
+			var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
+			gameData.OnFastDrop();
 		}
 	
 		// block rotation

@@ -23,7 +23,11 @@ public function OnBlocksCleared(rings:int):void
 	score += (rings * 10) * (rings * 10);
 	ringsTotal += rings;
 	
-	// TODO: "tetris" bonus
+	// award 'tetris' bonus
+	if (rings == 5)
+	{
+		score += 500;	
+	}
 	
 	ringsRemaining -= rings;
 	if (ringsRemaining - rings <= 0)
@@ -36,5 +40,5 @@ public function OnBlocksCleared(rings:int):void
 
 public function OnFastDrop():void
 {
-	// TODO: fast drop/speed award
+	score += 10;	
 }
