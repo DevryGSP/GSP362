@@ -15,7 +15,7 @@ function Update ()
 function OnGUI()
 {
 	GUI.skin = guiskin;
-	GUI.Label(Rect(618, 658, 200, 40), (GameData.level + 1).ToString());
+	GUI.Label(Rect(615, 658, 200, 40), (GameData.level).ToString());
 	GUI.Label(Rect(810, 658, 200, 40), "levelname");
 	
 	GUI.Label(Rect(623, 690, 200, 40), GameData.rings.ToString());
