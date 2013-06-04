@@ -1,6 +1,7 @@
 #pragma strict
 
 var triggerPrefab:GameObject;
+var endTriggerPrefab:GameObject;
 var lineCount:int;
 
 @HideInInspector
@@ -35,7 +36,6 @@ function Start ()
 			// move in direction
 			var dX:float = (this.transform.localScale.x * 0.5 + j + 0.5) * directions[i].x;
 			var dY:float = (this.transform.localScale.y * 0.5 + j + 0.5) * directions[i].y;
-			
 			var pos:Vector3 = new Vector3(this.transform.position.x + dX, this.transform.position.y + dY, this.transform.position.z);
 			
 			var trigger:GameObject = Instantiate(triggerPrefab, pos, Quaternion.Euler(0, 0, (directions[i].x != 0) ? 90 : 0));
@@ -43,6 +43,13 @@ function Start ()
 			(trigger.GetComponent("LineTrigger") as LineTrigger).position = j;
 			(trigger.GetComponent("LineTrigger") as LineTrigger).toCenter = directions[i];
 		}
+		
+		dX = (this.transform.localScale.x * 0.5 + j + 0.5) * directions[i].x;
+		dY = (this.transform.localScale.y * 0.5 + j + 0.5) * directions[i].y;
+		pos = new Vector3(this.transform.position.x + dX, this.transform.position.y + dY, this.transform.position.z);
+		
+		trigger = Instantiate(endTriggerPrefab, pos, Quaternion.Euler(0, 0, (directions[i].x != 0) ? 90 : 0));
+		trigger.transform.parent = this.transform;
 	}
 }
 
