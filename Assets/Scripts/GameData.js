@@ -1,16 +1,14 @@
 #pragma strict
 
-var levelNames:String[];
-
-static var score:int;
-static var rings:int;
-static var level:int;
-static var ringsRemaining:int;
-
+var score:int;
+var ringsTotal:int;
+var level:int;
+var ringsRemaining:int;
+ 
 function Start ()
 {
 	score = 0;
-	rings = 0;
+	ringsTotal = 0;
 	level = 0;
 	ringsRemaining = 10;
 }
@@ -23,18 +21,16 @@ function Update ()
 public function OnBlocksCleared(rings:int):void
 {
 	score += (rings * 10) * (rings * 10);
-	rings += rings;
+	ringsTotal += rings;
 	
 	// TODO: "tetris" bonus
 	
-	if (ringsRemaining - rings > 0)
+	ringsRemaining -= rings;
+	if (ringsRemaining - rings <= 0)
 	{
-		ringsRemaining -= rings;
-	}
-	else
-	{
-		ringsRemaining = 10;
+		ringsRemaining = 10 + ringsRemaining;
 		level++;
+		(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
 	}
 }
 

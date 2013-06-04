@@ -1,4 +1,5 @@
 #pragma strict
+var pieceMats:Material[]; // array of materials
 
 var pieces:GameObject[]; // array of pieces to choose from
 var speed:float = 2.0; // speed the block falls
@@ -76,11 +77,11 @@ function SpawnPiece()
 	piece.speed = speed;
 	piece.velocity = direction[index];
 	// assign material
-	var gameboard:Gameboard = GameObject.Find("Gameboard").GetComponent(Gameboard) as Gameboard;
-	var matIndex:int = GameData.level + Random.Range(0,2);
+	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
+	var matIndex:int = gameData.level + Random.Range(0,2);
 	for (var i:int = 0; i < o.transform.childCount; i++)
 	{
-		o.transform.GetChild(i).renderer.material = gameboard.pieces[matIndex];
+		o.transform.GetChild(i).renderer.material = pieceMats[matIndex];
 	}
 	
 	// store references

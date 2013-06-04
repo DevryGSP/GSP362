@@ -1,8 +1,5 @@
 #pragma strict
 
-var planets:Material[];
-var pieces:Material[];
-
 var triggerPrefab:GameObject;
 var lineCount:int;
 
@@ -54,7 +51,7 @@ function Update ()
 	if (ringsCleared > 0)
 	{
 		// send data to game data class
-		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData);
+		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 		gameData.OnBlocksCleared(ringsCleared);
 		
 		// reset ring count
@@ -103,13 +100,13 @@ public function onLineFull(trigger:LineTrigger, side:String):void
 
 public function OnLineClear(trigger:LineTrigger, side:String):void
 {
-	// get side trigger list and set to true
+	// get side trigger list and set to false
 	sides[getSideIndex(side), trigger.position] = false;
 	
 	// find the correct side
 	var boardSide:GameObject = this.transform.Find(side).gameObject;
 	
-	// loop through linetriggers and move their blocks down
+	// loop through linetriggers above and move their blocks down
 	var count:int = boardSide.transform.GetChildCount();
    	for (var i:int = trigger.position + 1; i < count; i++)
    	{
