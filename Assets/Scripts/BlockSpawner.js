@@ -1,6 +1,5 @@
 #pragma strict
 var pieceMats:Material[]; // array of materials
-
 var pieces:GameObject[]; // array of pieces to choose from
 var speed:float = 2.0; // speed the block falls
 var delay:float = 0.5; // delay before a new block is spawned
@@ -67,6 +66,7 @@ function SpawnPiece()
 	this.transform.rotation = Quaternion.Euler(0f, 0f, rotations[Random.Range(0, rotations.Length-1)]);
 	
 	// ---- SPAWN
+	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 	// randomly choose a piece
  	var prefab:GameObject = pieces[Random.Range(0, pieces.Length)];
  	// spawn piece
@@ -77,7 +77,6 @@ function SpawnPiece()
 	piece.speed = speed;
 	piece.velocity = direction[index];
 	// assign material
-	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 	var matIndex:int = gameData.level + Random.Range(0,2);
 	for (var i:int = 0; i < o.transform.childCount; i++)
 	{

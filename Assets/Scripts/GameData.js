@@ -10,7 +10,12 @@ class HighScoreElement
 	public var score:int;
 	public var name:String;
 }
- 
+
+function Awake ()
+{
+	DontDestroyOnLoad(transform.gameObject);
+}
+
 function Start ()
 {
 	score = 0;

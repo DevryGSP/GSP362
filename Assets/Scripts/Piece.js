@@ -45,6 +45,9 @@ function Update ()
 			{
 				hasCollided = true;
 				moveTimer = 20;
+				
+				var sm:SoundManager = GameObject.Find("SoundManager").GetComponent(SoundManager) as SoundManager;
+				sm.PlaySound(sm.GetBlockSound());
 			}
 			else
 			{

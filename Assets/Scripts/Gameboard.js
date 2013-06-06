@@ -61,6 +61,12 @@ function Update ()
 		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 		gameData.OnBlocksCleared(ringsCleared);
 		
+		if (ringsCleared == 5)
+		{
+			var sm:SoundManager = GameObject.Find("SoundManager").GetComponent(SoundManager) as SoundManager;
+			sm.PlaySound(sm.blockTris);
+		}
+		
 		// reset ring count
 		ringsCleared = 0;
 	}
