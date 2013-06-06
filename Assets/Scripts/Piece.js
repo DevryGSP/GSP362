@@ -47,7 +47,8 @@ function Update ()
 				moveTimer = 20;
 				
 				var sm:SoundManager = GameObject.Find("SoundManager").GetComponent(SoundManager) as SoundManager;
-				sm.PlaySound(sm.GetBlockSound());
+				var audio:AudioSource = sm.PlaySound(sm.GetBlockSound(), 0.5f);
+				audio.pitch = Random.Range(0.9f, 1.1f);
 			}
 			else
 			{

@@ -15,11 +15,20 @@ function Update ()
 
 }
 
-public function PlaySound(sound:AudioClip):void
+public function PlaySound(sound:AudioClip):AudioSource
+{
+	return PlaySound(sound, 1.0);
+}
+
+public function PlaySound(sound:AudioClip, volume:float):AudioSource
 {
 	var o:GameObject = Instantiate(soundPrefab, this.transform.position, this.transform.rotation);
+	var audio:AudioSource = (o.GetComponent(AudioSource) as AudioSource);
 	o.transform.parent = this.transform;
-	(o.GetComponent(AudioSource) as AudioSource).clip = sound;
+	audio.clip = sound;
+	audio.volume = volume;
+	
+	return audio;
 }
 
 public function GetBlockSound():AudioClip
