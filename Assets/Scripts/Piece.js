@@ -66,7 +66,7 @@ function Update ()
 	if (isSelected)
 	{
 		// fast drop
-		if (Input.GetButtonDown("QuickDrop"))
+		if (Input.GetButtonDown("QuickDrop") && !hasCollided)
 		{
 			while (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
 			{
