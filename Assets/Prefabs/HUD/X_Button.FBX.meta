@@ -1,65 +1,13 @@
 fileFormatVersion: 2
-guid: f86095cc98dc96a4fbaaf03281bd42af
+guid: b77258b34fe1a3b469412f02eaf4c291
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: A_Button
-    100002: B_Button
-    100004: //RootNode
-    100006: LeftStick
-    100008: Panel
-    100010: RightStick
-    100012: Speaker
-    100014: Sphere001
-    100016: Sphere002
-    100018: StickHolder
-    100020: StickHolder 1
-    100022: X_Button
-    100024: Y_Button
-    400000: A_Button
-    400002: B_Button
-    400004: //RootNode
-    400006: LeftStick
-    400008: Panel
-    400010: RightStick
-    400012: Speaker
-    400014: Sphere001
-    400016: Sphere002
-    400018: StickHolder
-    400020: StickHolder 1
-    400022: X_Button
-    400024: Y_Button
-    2300000: A_Button
-    2300002: B_Button
-    2300004: LeftStick
-    2300006: Panel
-    2300008: RightStick
-    2300010: Speaker
-    2300012: StickHolder
-    2300014: StickHolder 1
-    2300016: X_Button
-    2300018: Y_Button
-    3300000: A_Button
-    3300002: B_Button
-    3300004: LeftStick
-    3300006: Panel
-    3300008: RightStick
-    3300010: Speaker
-    3300012: StickHolder
-    3300014: StickHolder 1
-    3300016: X_Button
-    3300018: Y_Button
-    4300000: Panel
-    4300002: A_Button
-    4300004: B_Button
-    4300006: Y_Button
-    4300008: X_Button
-    4300010: StickHolder
-    4300012: StickHolder
-    4300014: LeftStick
-    4300016: RightStick
-    4300018: Speaker
-    7400000: Take 001
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder001
     9500000: //RootNode
   materials:
     importMaterials: 1
