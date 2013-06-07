@@ -82,10 +82,10 @@ function SetHighScores(scores:HighScoreElement[]):void
 	}
 }
 
-public function SavePlayerScore(playerName:String):void
+public function SavePlayerScore(playerName:String):boolean
 {
 	var scores:HighScoreElement[] = GetHighScores();
-	
+	var varReturn: boolean  = false;
 	var last:HighScoreElement = null;
 	for (var i:int = 0; i < 10; i++)
 	{
@@ -99,6 +99,7 @@ public function SavePlayerScore(playerName:String):void
 				
 				scores[i].name = playerName;
 				scores[i].score = this.score;
+				varReturn = true;
 			}	
 		}
 		else
@@ -116,4 +117,5 @@ public function SavePlayerScore(playerName:String):void
 	}
 	
 	SetHighScores(scores);
+	return varReturn;
 }

@@ -14,6 +14,6 @@ function OnTriggerStay(other:Collider):void
 {
 	if (other.transform.parent.name == "BlockContainer")
 	{
-		// TODO: goto game over screen
+		Application.LoadLevel(7);
 	}
 }
