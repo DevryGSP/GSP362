@@ -66,7 +66,7 @@ function GetHighScores():HighScoreElement[]
 	{
 		elements[i] = new HighScoreElement();
 		elements[i].name = PlayerPrefs.GetString("name" + i.ToString(), "player");
-		elements[i].score = PlayerPrefs.GetInt("score" + i.ToString(), i);
+		elements[i].score = PlayerPrefs.GetInt("score" + i.ToString(), 10 - i);
 	}
 	
 	return elements;
@@ -74,7 +74,6 @@ function GetHighScores():HighScoreElement[]
 
 function SetHighScores(scores:HighScoreElement[]):void
 {
-	print("----");
 	for (var i:int = 0; i < 10; i++)
 	{	
 		PlayerPrefs.SetString("name" + i.ToString(), scores[i].name);
@@ -85,7 +84,8 @@ function SetHighScores(scores:HighScoreElement[]):void
 public function SavePlayerScore(playerName:String):boolean
 {
 	var scores:HighScoreElement[] = GetHighScores();
-	var varReturn: boolean  = false;
+	var highscore:boolean = false;
+	
 	var last:HighScoreElement = null;
 	for (var i:int = 0; i < 10; i++)
 	{
@@ -99,7 +99,7 @@ public function SavePlayerScore(playerName:String):boolean
 				
 				scores[i].name = playerName;
 				scores[i].score = this.score;
-				varReturn = true;
+				highscore = true;
 			}	
 		}
 		else
@@ -117,5 +117,5 @@ public function SavePlayerScore(playerName:String):boolean
 	}
 	
 	SetHighScores(scores);
-	return varReturn;
+	return highscore;
 }

@@ -38,14 +38,9 @@ function OnGUI()
 	GUI.skin = guiskin;
 	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 	var scores:HighScoreElement[] = gameData.GetHighScores();
-	for(var i :int = 0; i < 9; i++){	
-	GUI.Label(Rect(	190, 90 + (i * 50), 450, 45), scores[i].name);
-	
-	GUI.Label(Rect(	500, 90 + (i * 50), 450, 45), scores[i].score.ToString()); 
-	
+	for(var i:int = 0; i < 10; i++)
+	{	
+		GUI.Label(Rect(	190, 90 + (i * 50), 450, 45), scores[i].name);
+		GUI.Label(Rect(	500, 90 + (i * 50), 450, 45), scores[i].score.ToString()); 
 	}
-
-	//}
-
-
 }

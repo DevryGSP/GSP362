@@ -1,15 +1,19 @@
 var guiskin:GUISkin;
 var levelNames:String[];
+var playerName:String;
+var hasEnteredName:boolean;
+var hasHighScore:boolean;
 
 function Start ()
 {
-	
-
+	playerName = "PLAYER";
+	hasEnteredName = false;
+	hasHighScore = false;
 }
 
 function Update ()
 {
-	   //check if the left mouse has been pressed down this frame
+	//check if the left mouse has been pressed down this frame
     if (Input.GetMouseButtonDown(0))
     {
         //empty RaycastHit object which raycast puts the hit details into
@@ -20,21 +24,27 @@ function Update ()
  		// checks the hit if so tells us the name in debug and then checks what to do with that name.
         if (Physics.Raycast(ray, hit))
         {
-        Debug.Log(hit.collider.name);
-        // back to menu.
-        	if (hit.collider.name == "RestartCube"){
+	        Debug.Log(hit.collider.name);
+	        // back to menu.
+        	if (hit.collider.name == "RestartCube")
+        	{
          		Application.LoadLevel(2);
-        		}
-        	if (hit.collider.name == "LeaderboardCube"){
+        	}
+        	if (hit.collider.name == "LeaderboardCube")
+        	{
          		Application.LoadLevel(8);
-        		}
-        	if (hit.collider.name == "ExitCube"){
+        	}
+        	if (hit.collider.name == "ExitCube")
+        	{
          		Application.Quit();
-        		}
-      		}
-		}
+        	}
+      	}
 	}
-var stringToEdit:String = " ";
+	
+	
+}
+
+
 function OnGUI()
 {
 	GUI.skin = guiskin;
@@ -45,12 +55,27 @@ function OnGUI()
 	GUI.Label(Rect(	320, 240, 800, 40), "Your total score was ");
 	GUI.Label(Rect(	255, 280, 800, 40), "Total Rings : " + gameData.ringsTotal.ToString() + " x Gamescore: " + gameData.score + " = " + finalScore); 
 	
-	GUI.Label (Rect (10, 10, 100, 30), "Enter Name:");
- 	stringToEdit = GUI.TextField (Rect (90, 10, 200, 25), stringToEdit, 40);
+	if (Event.current.keyCode == KeyCode.Return && !hasEnteredName)
+	{
+		hasEnteredName = true;
+		hasHighScore = gameData.SavePlayerScore(playerName);
+	}
 	
-	if (gameData.SavePlayerScore("New_Player")){
-	
-	GUI.Label(Rect( 180, 360, 600, 40), "Your score has made it to the leaderboard!!!"); 
-	GUI.Label(Rect( 207, 400, 600, 40), "Click the leaderboards to enter the fame. ");
+	if (!hasEnteredName)
+	{
+		GUI.Label(Rect (375, 360, 200, 30), "Enter Name:");
+ 		playerName = GUI.TextField (Rect (350, 400, 200, 25), playerName, 40);
+	}
+	else
+	{
+		if (hasHighScore)
+		{
+			GUI.Label(Rect( 180, 360, 600, 40), "Your score has made it to the leaderboard!!!"); 
+			GUI.Label(Rect( 207, 400, 600, 40), "Click the leaderboards to enter the fame. ");
+		}
+		else
+		{
+			GUI.Label(Rect( 180, 360, 600, 40), "Sorry, you didn't make it on the leaderboards."); 
+		}
 	}
 }
