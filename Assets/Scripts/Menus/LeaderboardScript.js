@@ -25,9 +25,7 @@ function Update ()
         	if (hit.collider.name == "RestartCube"){
          		Application.LoadLevel(2);
         		}
-        	if (hit.collider.name == "LeaderboardCube"){
-         		Application.LoadLevel(8);
-        		}
+        
         	if (hit.collider.name == "ExitCube"){
          		Application.Quit();
         		}
@@ -39,17 +37,11 @@ function OnGUI()
 {
 	GUI.skin = guiskin;
 	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
-	var finalScore = gameData.ringsTotal * gameData.score;
+
 	
 	GUI.Label(Rect(	315, 200, 450, 40), "You made it to level: " + gameData.level);
-	GUI.Label(Rect(	320, 240, 800, 40), "Your total score was ");
-	GUI.Label(Rect(	255, 280, 800, 40), "Total Rings : " + gameData.ringsTotal.ToString() + " x Gamescore: " + gameData.score + " = " + finalScore); 
-//var leaderboardlength;
-//var leaderboardScoreI;
-//for (var i:int = 0; i < leaderboardlength; i++)
-	//if(finalScore >= leaderboardScoreI){
-	GUI.Label(Rect( 180, 360, 600, 40), "Your score has made it to the leaderboard!!!"); 
-	GUI.Label(Rect( 207, 400, 600, 40), "Click the leaderboards to enter the fame. ");
+	 
+
 
 	//}
 
