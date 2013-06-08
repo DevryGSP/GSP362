@@ -4,6 +4,7 @@ var soundPrefab:GameObject;
 var planetNarrations:AudioClip[];
 var blockSounds:AudioClip[];
 var blockTris:AudioClip;
+var themeSong:AudioClip;
 
 function Start ()
 {

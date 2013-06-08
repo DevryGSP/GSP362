@@ -7,7 +7,6 @@
 // updates to see if raycast returns a hit and checks that hit name for advancement or exit.
 function Update()
 {
-Debug.Log("This works");
 
     //check if the left mouse has been pressed down this frame
     if (Input.GetMouseButtonDown(0))
@@ -20,7 +19,6 @@ Debug.Log("This works");
  		// checks the hit if so tells us the name in debug and then checks what to do with that name.
         if (Physics.Raycast(ray, hit))
         {
-        Debug.Log(hit.collider.name);
         // starts game.
         if (hit.collider.name == "start")
          {
