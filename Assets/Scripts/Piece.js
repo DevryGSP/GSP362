@@ -1,5 +1,10 @@
 #pragma strict
 
+var ghostPrefab:GameObject;
+
+@HideInInspector
+var ghost:GhostPiece;
+
 @HideInInspector
 var velocity:Vector2;
 
@@ -23,6 +28,11 @@ function Start ()
 	hasCollided = false;
 	canMovePiece = true;
 	moveTimer = speed;
+	
+	// add ghost piece
+	var o:GameObject = Instantiate(ghostPrefab, this.transform.position, this.transform.rotation);
+	ghost = o.GetComponent(GhostPiece) as GhostPiece;
+	UpdateGhost();
 }
 
 function Update ()
@@ -62,6 +72,7 @@ function Update ()
 			   	}
 			   	
 			   	// destroy self
+				Destroy(ghost.gameObject);
 				Destroy(this.gameObject);
 			}
 		}
@@ -86,15 +97,19 @@ function Update ()
 		var c:Collider;
 		if (Input.GetButtonDown("RotCountClock"))
 		{
-			this.transform.Rotate(Vector3(0, 0, 90));
-			
-			CheckRotatedCollisions(90);
+			if (!CheckRotatedCollisions(90))
+			{
+				this.transform.Rotate(Vector3(0, 0, 90));
+				UpdateGhost();
+			}
 		}
 		else if (Input.GetButtonDown("RotClock"))
 		{
-			this.transform.Rotate(Vector3(0, 0, -90));
-			
-			CheckRotatedCollisions(-90);
+			if (!CheckRotatedCollisions(-90))
+			{
+				this.transform.Rotate(Vector3(0, 0, -90));
+				UpdateGhost();
+			}
 		}
 		
 		// if moving left or right
@@ -106,6 +121,7 @@ function Update ()
 				if (!Collide(this.transform.position.x, this.transform.position.y + 1))
 				{
 					this.transform.position.y += 1;
+					UpdateGhost();
 				}
 			}
 			else if (canMovePiece && (Input.GetAxis("Vertical") > 0 || Input.GetAxis("GP_Vertical") > 0 || Input.GetAxis("DPad_Vertical") > 0))
@@ -114,6 +130,7 @@ function Update ()
 				if (!Collide(this.transform.position.x, this.transform.position.y - 1))
 				{
 					this.transform.position.y -= 1;
+					UpdateGhost();
 				}
 			}
 			else if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("DPad_Vertical") == 0)
@@ -130,6 +147,7 @@ function Update ()
 				if (!Collide(this.transform.position.x - 1, this.transform.position.y))
 				{
 					this.transform.position.x -= 1;
+					UpdateGhost();
 				}
 			}
 			else if (canMovePiece && (Input.GetAxis("Horizontal") > 0 ||  Input.GetAxis("GP_Horizontal") > 0 || Input.GetAxis("DPad_Horizontal") > 0))
@@ -138,6 +156,7 @@ function Update ()
 				if (!Collide(this.transform.position.x + 1, this.transform.position.y))
 				{
 					this.transform.position.x += 1;
+					UpdateGhost();
 				}
 			}
 			else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("DPad_Horizontal") == 0)
@@ -148,8 +167,16 @@ function Update ()
 	}
 }
 
-function CheckRotatedCollisions(rotation:float):void
+function UpdateGhost():void
 {
+	ghost.UpdatePosition(this.transform.position, this.transform.rotation, velocity);
+}
+
+function CheckRotatedCollisions(rotation:float):boolean
+{
+	// rotate and check piece
+	this.transform.Rotate(Vector3(0, 0, rotation));
+	
 	var c = Collide(this.transform.position.x, this.transform.position.y);
 	var itr:int = 0;
 	while (c)
@@ -171,8 +198,9 @@ function CheckRotatedCollisions(rotation:float):void
 				break;
 			default: 
 				//print("collider not defined!");
+				// rotate back
 				this.transform.Rotate(Vector3(0, 0, -rotation));
-				return;
+				return true;
 		}
 		
 		// in case stuck in collision too long, break from loop
@@ -180,13 +208,18 @@ function CheckRotatedCollisions(rotation:float):void
 		if (itr > 100)
 		{
 			//print("too many iterations"); 
+			// rotate back
 			this.transform.Rotate(Vector3(0, 0, -rotation));
-			return;
+			return true;
 		}
 		
 		// check for collisions at new position
 		c = Collide(this.transform.position.x, this.transform.position.y);
 	}
+	
+	// rotate back
+	this.transform.Rotate(Vector3(0, 0, -rotation));
+	return false;
 }
 
 // moves peice to specified position and check children for collisions
