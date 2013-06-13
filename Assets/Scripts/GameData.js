@@ -56,12 +56,13 @@ public function OnBlocksCleared(rings:int):void
 		level++;
 		(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
 	}
+	
+		isLevelChanging = true;	
 }
 
 public function OnFastDrop():void
 {
 	score += 10;
-	isLevelChanging = true;	
 }
 
 public function rotateCamera ()
