@@ -52,16 +52,18 @@ public function OnBlocksCleared(rings:int):void
 	ringsRemaining -= rings;
 	if (ringsRemaining - rings <= 0)
 	{
+		isLevelChanging = true;	
 		ringsRemaining = 10 + ringsRemaining;
 		level++;
 		(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
 	}
 	
-		isLevelChanging = true;	
+		
 }
 
 public function OnFastDrop():void
 {
+	
 	score += 10;
 }
 
