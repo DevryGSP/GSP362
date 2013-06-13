@@ -122,8 +122,8 @@ public function OnLineClear(trigger:LineTrigger, side:String):void
 	// loop through linetriggers above and move their blocks down
 	var count:int = boardSide.transform.GetChildCount();
    	for (var i:int = trigger.position + 1; i < count; i++)
-   	{
-   		(boardSide.transform.GetChild(i).GetComponent("LineTrigger") as LineTrigger).MoveBlocksTowardsCenter();
+   	{   		
+   	(boardSide.transform.GetChild(i).GetComponent("LineTrigger") as LineTrigger).MoveBlocksTowardsCenter();
    	}
 	
 }

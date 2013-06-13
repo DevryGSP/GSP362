@@ -70,7 +70,6 @@ function Update ()
 			   	{
 			   		this.transform.GetChild(0).parent = GameObject.Find("BlockContainer").transform;
 			   	}
-			   	
 			   	// destroy self
 				Destroy(ghost.gameObject);
 				Destroy(this.gameObject);

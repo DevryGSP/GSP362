@@ -5,7 +5,7 @@ var blocks:ArrayList;
 var position:int;
 var toCenter:Vector2;
 var count:int;
-
+var particleClearing: Transform;
 function Start()
 {
 	blocks = new ArrayList(maxBlocks);
@@ -51,6 +51,7 @@ public function ClearBlocks():void
 	{
 		if (o)
 		{
+			var explode = Instantiate(particleClearing, this.transform.position, Quaternion.identity);
 			Destroy((o as Collider).gameObject);
 		}
 	}
