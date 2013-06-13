@@ -4,6 +4,9 @@ var score:int;
 var ringsTotal:int;
 var level:int;
 var ringsRemaining:int;
+var isLevelChanging : boolean;
+var camTurn : float = 0;
+var camRotSpeed : float = 400;
  
 class HighScoreElement
 {
@@ -31,6 +34,8 @@ function Update ()
 		PlayerPrefs.DeleteAll();
 		print("Scores deleted!");
 	}
+	
+	rotateCamera ();
 }
 
 public function OnBlocksCleared(rings:int):void
@@ -55,7 +60,23 @@ public function OnBlocksCleared(rings:int):void
 
 public function OnFastDrop():void
 {
-	score += 10;	
+	score += 10;
+	isLevelChanging = true;	
+}
+
+public function rotateCamera ()
+{
+	if (isLevelChanging)
+	{
+		Camera.mainCamera.transform.Rotate (0, camRotSpeed * Time.deltaTime, 0);
+		camTurn += camRotSpeed * Time.deltaTime;
+		if (camTurn >= 360)
+		{
+			isLevelChanging = false;
+			camTurn = 0;
+			Camera.mainCamera.transform.rotation = Quaternion.Euler (0f, 0f, 0f);
+		}
+	}
 }
 
 function GetHighScores():HighScoreElement[]
