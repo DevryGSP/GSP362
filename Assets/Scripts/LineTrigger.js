@@ -51,8 +51,9 @@ public function ClearBlocks():void
 	{
 		if (o)
 		{
-			var explode = Instantiate(particleClearing, this.transform.position, Quaternion.identity);
+			 Instantiate(particleClearing, this.transform.position, Quaternion.identity);
 			Destroy((o as Collider).gameObject);
+			
 		}
 	}
 	
