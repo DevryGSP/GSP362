@@ -40,25 +40,26 @@ function Update ()
 
 public function OnBlocksCleared(rings:int):void
 {
-	score += (rings * 10) * (rings * 10);
-	ringsTotal += rings;
-	
-	// award 'tetris' bonus
-	if (rings == 5)
+	if (Application.loadedLevel.ToString() == "Game")
 	{
-		score += 500;	
-	}
-	
-	ringsRemaining -= rings;
-	if (ringsRemaining - rings <= 0)
-	{
-		isLevelChanging = true;	
-		ringsRemaining = 10 + ringsRemaining;
-		level++;
-		(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
-	}
-	
+		score += (rings * 10) * (rings * 10);
+		ringsTotal += rings;
 		
+		// award 'tetris' bonus
+		if (rings == 5)
+		{
+			score += 500;	
+		}
+		
+		ringsRemaining -= rings;
+		if (ringsRemaining - rings <= 0)
+		{
+			isLevelChanging = true;	
+			ringsRemaining = 10 + ringsRemaining;
+			level++;
+			(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
+		}
+	}
 }
 
 public function OnFastDrop():void
