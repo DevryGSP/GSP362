@@ -40,7 +40,7 @@ function Update () {
         Debug.Log(hit.collider.name);
         // goes back to main menu
         if (hit.collider.name == "back"){
-         	Application.LoadLevel(2);
+         	Application.LoadLevel(0);
          }
       }
    }

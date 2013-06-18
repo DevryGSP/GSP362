@@ -24,7 +24,7 @@ function Update()
         // backs to the main menu.
         if (hit.collider.name == "back")
          {
-         	Application.LoadLevel(2);
+         	Application.LoadLevel(0);
          }
       }
     }

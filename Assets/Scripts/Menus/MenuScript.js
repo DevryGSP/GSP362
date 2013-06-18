@@ -27,23 +27,23 @@ function Update()
          // loads controller guide
          if (hit.collider.name == "controllerguide")
          {
-         	Application.LoadLevel(3);
+         	Application.LoadLevel(2);
          } 
          // loads how to pla
          if (hit.collider.name == "howtoplay")
          {
-         	Application.LoadLevel(4);
+         	Application.LoadLevel(3);
          } 
          // loads the credits.
          if (hit.collider.name == "credits")
          {
-         	Application.LoadLevel(5);
+         	Application.LoadLevel(4);
          } 
          
          // exits game 
-         if (hit.collider.name == "exit")
+         if (hit.collider.name == "leaderboards")
          {
-         	Application.Quit();
+         	Application.LoadLevel(7);
          }   
         }
     }

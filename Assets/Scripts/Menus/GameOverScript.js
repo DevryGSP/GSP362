@@ -28,16 +28,13 @@ function Update ()
 	        // back to menu.
         	if (hit.collider.name == "RestartCube")
         	{
-         		Application.LoadLevel(2);
+         		Application.LoadLevel(1);
         	}
         	if (hit.collider.name == "LeaderboardCube")
         	{
-         		Application.LoadLevel(8);
+         		Application.LoadLevel(7);
         	}
-        	if (hit.collider.name == "ExitCube")
-        	{
-         		Application.Quit();
-        	}
+        	
       	}
 	}
 	
@@ -51,9 +48,9 @@ function OnGUI()
 	var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
 	var finalScore = gameData.ringsTotal * gameData.score;
 
-	GUI.Label(Rect(	315, 200, 450, 40), "You made it to level: " + gameData.level);
-	GUI.Label(Rect(	320, 240, 800, 40), "Your total score was ");
-	GUI.Label(Rect(	255, 280, 800, 40), "Total Rings : " + gameData.ringsTotal.ToString() + " x Gamescore: " + gameData.score + " = " + finalScore); 
+	GUI.Label(Rect(	325, 200, 450, 40), "You made it to level: " + gameData.level);
+	GUI.Label(Rect(	330, 240, 800, 40), "Your total score was ");
+	GUI.Label(Rect(	265, 280, 800, 40), "Total Rings : " + gameData.ringsTotal.ToString() + " x Gamescore: " + gameData.score + " = " + finalScore); 
 	
 	if (Event.current.keyCode == KeyCode.Return && !hasEnteredName)
 	{
@@ -63,19 +60,19 @@ function OnGUI()
 	
 	if (!hasEnteredName)
 	{
-		GUI.Label(Rect (375, 360, 200, 30), "Enter Name:");
+		GUI.Label(Rect (385, 360, 200, 30), "Enter Name:");
  		playerName = GUI.TextField (Rect (350, 400, 200, 25), playerName, 40);
 	}
 	else
 	{
 		if (hasHighScore)
 		{
-			GUI.Label(Rect( 180, 360, 600, 40), "Your score has made it to the leaderboard!!!"); 
-			GUI.Label(Rect( 207, 400, 600, 40), "Click the leaderboards to enter the fame. ");
+			GUI.Label(Rect( 190, 360, 600, 40), "Your score has made it to the leaderboard!!!"); 
+			GUI.Label(Rect( 217, 400, 600, 40), "Click the leaderboards to enter the fame. ");
 		}
 		else
 		{
-			GUI.Label(Rect( 180, 360, 600, 40), "Sorry, you didn't make it on the leaderboards."); 
+			GUI.Label(Rect( 190, 360, 600, 40), "Sorry, you didn't make it on the leaderboards."); 
 		}
 	}
 }

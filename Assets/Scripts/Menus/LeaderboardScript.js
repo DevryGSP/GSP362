@@ -23,12 +23,9 @@ function Update ()
         Debug.Log(hit.collider.name);
         // back to menu.
         	if (hit.collider.name == "RestartCube"){
-         		Application.LoadLevel(2);
+         		Application.LoadLevel(0);
         		}
         
-        	if (hit.collider.name == "ExitCube"){
-         		Application.Quit();
-        		}
       		}
 		}
 	}
