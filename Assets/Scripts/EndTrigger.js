@@ -14,6 +14,6 @@ function OnTriggerStay(other:Collider):void
 {
 	if (other.transform.parent.name == "BlockContainer")
 	{
-		Application.LoadLevel(7);
+		Application.LoadLevel("GameOver");
 	}
 }
