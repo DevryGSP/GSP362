@@ -5,7 +5,7 @@ var blocks:ArrayList;
 var position:int;
 var toCenter:Vector2;
 var count:int;
-var particleClearing: Transform;
+var particleClearing:GameObject;
 function Start()
 {
 	blocks = new ArrayList(maxBlocks);

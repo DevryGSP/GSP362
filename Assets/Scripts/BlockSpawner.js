@@ -1,7 +1,7 @@
 #pragma strict
 var pieceMats:Material[]; // array of materials
 var pieces:GameObject[]; // array of pieces to choose from
-var speed:float = 2.0; // speed the block falls
+var speed:float = 25.0; // speed the block falls
 var delay:float = 0.5; // delay before a new block is spawned
 
 @HideInInspector

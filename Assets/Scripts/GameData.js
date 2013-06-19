@@ -40,7 +40,7 @@ function Update ()
 
 public function OnBlocksCleared(rings:int):void
 {
-	if (Application.loadedLevel.ToString() == "Game")
+	if (Application.loadedLevelName == "Game")
 	{
 		score += (rings * 10) * (rings * 10);
 		ringsTotal += rings;
@@ -58,13 +58,13 @@ public function OnBlocksCleared(rings:int):void
 			ringsRemaining = 10 + ringsRemaining;
 			level++;
 			(GameObject.Find("Planet").GetComponent(Planet) as Planet).OnLevelUp();
+			(GameObject.Find("BlockSpawner").GetComponent(BlockSpawner) as BlockSpawner).speed -= 2;
 		}
 	}
 }
 
 public function OnFastDrop():void
 {
-	
 	score += 10;
 }
 
