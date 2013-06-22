@@ -37,7 +37,7 @@ function OnGUI()
 	var scores:HighScoreElement[] = gameData.GetHighScores();
 	for(var i:int = 0; i < 10; i++)
 	{	
-		GUI.Label(Rect(	210, 126+ (i * 45), 450, 45), scores[i].name);
-		GUI.Label(Rect(	510, 126+ (i * 45), 450, 45), scores[i].score.ToString()); 
+		GUI.Label(Rect(	210, 135+ (i * 45), 450, 45), scores[i].name);
+		GUI.Label(Rect(	510, 135+ (i * 45), 450, 45), scores[i].score.ToString()); 
 	}
 }

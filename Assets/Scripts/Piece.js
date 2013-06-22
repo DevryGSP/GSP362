@@ -37,13 +37,14 @@ function Start ()
 
 function Update ()
 {
+
 	if (moveTimer > 0.0)
 	{
 		moveTimer -= 100 * Time.deltaTime;
 	}
 	else
 	{	
-		if (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
+		if (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y) )
 		{	
 			moveTimer = speed;
 			this.transform.position.x += velocity.x;
@@ -80,7 +81,7 @@ function Update ()
 	if (isSelected)
 	{
 		// fast drop
-		if (Input.GetButtonDown("QuickDrop") && !hasCollided)
+		if (Input.GetButtonDown("QuickDrop") && !hasCollided  && Application.loadedLevel != 3)
 		{
 			while (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
 			{
@@ -94,7 +95,7 @@ function Update ()
 	
 		// block rotation
 		var c:Collider;
-		if (Input.GetButtonDown("RotCountClock"))
+		if (Input.GetButtonDown("RotCountClock") && Application.loadedLevel != 3)
 		{
 			if (!CheckRotatedCollisions(90))
 			{
@@ -102,7 +103,7 @@ function Update ()
 				UpdateGhost();
 			}
 		}
-		else if (Input.GetButtonDown("RotClock"))
+		else if (Input.GetButtonDown("RotClock")&& Application.loadedLevel != 3)
 		{
 			if (!CheckRotatedCollisions(-90))
 			{
