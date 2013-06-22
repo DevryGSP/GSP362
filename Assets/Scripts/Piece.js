@@ -78,10 +78,10 @@ function Update ()
 		}
 	}
 	
-	if (isSelected)
+	if (isSelected && Application.loadedLevel != 3)
 	{
 		// fast drop
-		if (Input.GetButtonDown("QuickDrop") && !hasCollided  && Application.loadedLevel != 3)
+		if (Input.GetButtonDown("QuickDrop") && !hasCollided)
 		{
 			while (!Collide(this.transform.position.x + velocity.x, this.transform.position.y + velocity.y))
 			{
@@ -95,7 +95,7 @@ function Update ()
 	
 		// block rotation
 		var c:Collider;
-		if (Input.GetButtonDown("RotCountClock") && Application.loadedLevel != 3)
+		if (Input.GetButtonDown("RotCountClock"))
 		{
 			if (!CheckRotatedCollisions(90))
 			{
@@ -103,7 +103,7 @@ function Update ()
 				UpdateGhost();
 			}
 		}
-		else if (Input.GetButtonDown("RotClock")&& Application.loadedLevel != 3)
+		else if (Input.GetButtonDown("RotClock"))
 		{
 			if (!CheckRotatedCollisions(-90))
 			{
