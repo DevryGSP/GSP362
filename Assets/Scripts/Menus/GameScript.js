@@ -16,8 +16,11 @@ function Start ()
 	defaultPosition = Vector3.zero;
 	audio.loop = true;
 	isPaused = false;
-	restartBox.position = defaultscreen;
-	resumeBox.position = defaultscreen;
+	if (restartBox && resumeBox)
+	{
+		restartBox.position = defaultscreen;
+		resumeBox.position = defaultscreen;
+	}
 }
 
 function Update ()
@@ -32,36 +35,43 @@ function Update ()
     {
     	restartBox.position = restartScreen;
 		resumeBox.position = resumeScreen;
-    //check if the left mouse has been pressed down this frame
-    if (Input.GetMouseButtonDown(0))
-    	{
-        //empty RaycastHit object which raycast puts the hit details into
-        var hit : RaycastHit;
-        //ray shooting out of the camera from where the mouse is
-        var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
- 
- 		// checks the hit if so tells us the name in debug and then checks what to do with that name.
-        if (Physics.Raycast(ray, hit))
-        	{
-       			 Debug.Log(hit.collider.name);
-        		// restarts game.
-        	if (hit.collider.name == "restartBox")
-         		{
-         		Time.timeScale = 1;
-         		Application.LoadLevel(1);
-       			}
-       			// exits game 
-         		if (hit.collider.name == "resumeBox")
-        		{
-        	 	isPaused = false;
-    	     	Time.timeScale = 1;
-    	     	}
-        	 }  
+	    //check if the left mouse has been pressed down this frame
+	    if (Input.GetMouseButtonDown(0))
+		{
+		    //empty RaycastHit object which raycast puts the hit details into
+		    var hit : RaycastHit;
+		    //ray shooting out of the camera from where the mouse is
+		    var ray : Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		
+			// checks the hit if so tells us the name in debug and then checks what to do with that name.
+		    if (Physics.Raycast(ray, hit))
+			{
+				 Debug.Log(hit.collider.name);
+				// restarts game.
+				if (hit.collider.name == "restartBox")
+		 		{
+		     		Time.timeScale = 1;
+		     		Application.LoadLevel(1);
+		     		var gameData:GameData = GameObject.Find("GameData").GetComponent(GameData) as GameData;
+					gameData.score = 0;
+					gameData.ringsTotal = 0;
+					gameData.level = 0;
+					gameData.ringsRemaining = 10;
+				}
+				// exits game 
+		 		if (hit.collider.name == "resumeBox")
+				{
+		    	 	isPaused = false;
+			     	Time.timeScale = 1;
+		     	}
+			 }  
 		}
 	}
-	if(!isPaused){
-	restartBox.position = defaultscreen;
-	resumeBox.position = defaultscreen;
+	
+	if(!isPaused && restartBox)
+	{
+		restartBox.position = defaultscreen;
+		resumeBox.position = defaultscreen;
 	}
 }
 
