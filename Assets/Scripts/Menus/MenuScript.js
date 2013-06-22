@@ -43,7 +43,7 @@ function Update()
          // exits game 
          if (hit.collider.name == "leaderboards")
          {
-         	Application.LoadLevel(7);
+         	Application.LoadLevel(6);
          }   
         }
     }
